@@ -1,0 +1,36 @@
+# Dependencies
+node_modules/
+.venv/
+vendor/
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Build
+dist/
+build/
+*.o
+*.pyc
+__pycache__/
+
+# Review loop state (ephemeral)
+.claude/review-loop.local.md
+.claude/review-loop.log
+
+# Codex toolkit config (project-specific, optional to track)
+# .codex-toolkit.md
+
+# Claude worktrees (ephemeral, per-developer)
+.claude/worktrees/

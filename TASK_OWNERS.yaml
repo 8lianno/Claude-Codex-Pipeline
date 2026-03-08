@@ -1,0 +1,57 @@
+# Task Ownership Registry
+#
+# Rules:
+# 1. One task = one branch = one worktree = one active writer
+# 2. If a task needs to modify a file owned by another task, it STOPS and hands off
+# 3. Shared files are supervisor-owned — only edited from main checkout after all tasks merge
+# 4. Reviewers are read-only unless promoted to writer
+#
+# Populated by /delegate during planning. This file is the source of truth for path ownership.
+
+# Files that are conflict magnets — supervisor-owned, merge-last
+shared_files:
+  - "package.json"
+  - "package-lock.json"
+  - "pnpm-lock.yaml"
+  - "yarn.lock"
+  - "poetry.lock"
+  - "Cargo.lock"
+  - "go.sum"
+  - "tsconfig.json"
+  - "*.prisma"
+  - ".env.example"
+  - "docker-compose*.yml"
+  - "Dockerfile*"
+  - ".github/**"
+  - "src/index.*"
+  - "src/main.*"
+  - "src/app.*"
+
+# Merge order: lower number merges first
+# 1 = read-only analysis, 2 = leaf modules, 3 = tests, 4 = shared/core/config
+merge_priority:
+  analysis: 1
+  leaf_module: 2
+  tests: 3
+  shared_core: 4
+
+# Active tasks — populated by /delegate
+# Example:
+#
+# tasks:
+#   auth-refactor:
+#     branch: task/auth-refactor
+#     worktree: ../repo-auth-refactor  # or .claude/worktrees/auth-refactor
+#     agent: codex          # codex | claude
+#     merge_priority: 2
+#     status: in_progress   # planned | in_progress | review | done | merged
+#     paths:
+#       allow:
+#         - src/auth/**
+#         - tests/auth/**
+#       deny:
+#         - src/auth/index.ts  # re-exports, supervisor-owned
+#     delegation_file: docs/delegation/auth-refactor.md
+#     acceptance_file: docs/acceptance/auth-refactor.yaml
+
+tasks: {}
