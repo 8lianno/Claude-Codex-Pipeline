@@ -92,10 +92,25 @@ No magic. The pipeline is YAML files, git worktrees, and deterministic checks. I
 ### 1. Install the plugin
 
 ```bash
-claude plugin install claude-codex-pipeline@ali-local
+claude plugin install claude-codex-pipeline@8lianno
 ```
 
-### 2. Scaffold your repo
+### 2. Install dependencies
+
+You also need [Codex CLI](https://github.com/openai/codex) and the codex-toolkit plugin:
+
+```bash
+npm install -g @openai/codex
+claude plugin install codex-toolkit@xiaolai
+```
+
+Optional — for independent review gating:
+
+```bash
+claude plugin install review-loop@hamel-review
+```
+
+### 4. Scaffold your repo
 
 ```
 /claude-codex-pipeline:init-swarm
@@ -103,7 +118,7 @@ claude plugin install claude-codex-pipeline@ali-local
 
 This creates: `CLAUDE.md`, `AGENTS.md`, `TASK_OWNERS.yaml`, `swarm-policy.yaml`, `.claude/settings.json`, and the `docs/` directory structure. Optionally connects Linear for issue tracking.
 
-### 3. Build something
+### 5. Build something
 
 ```
 /claude-codex-pipeline:ship "add input validation to the signup form"
