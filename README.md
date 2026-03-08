@@ -1,4 +1,4 @@
-# Claude-Codex Pipeline
+# Claude-Codex Pipeline Plugin
 
 A Claude Code plugin that combines Claude for planning and review with Codex for implementation and execution. It turns feature ideas into PRDs, user stories, tracked tasks, isolated worktrees, reviewed code, and gated merges.
 
